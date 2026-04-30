@@ -1,6 +1,7 @@
 import iziToast from 'izitoast';
 import { getImage } from './js/pixabay-api';
 import {
+  ImagesRender,
   offLouder,
   onImagesRender,
   onImagesRenderClear,
@@ -35,10 +36,11 @@ function onSearchFormImages(e) {
 
         return;
       }
-      console.log(imageData);
-      const imageCarts = imageData.hits.map(image => onImagesRender(image)).join('');
-      refs.gallery.innerHTML = imageCarts;
-      onImagesRenderLarge(imageCarts);
+      console.log(imageData.hits);
+
+      const imagesCart = imageData.hits.map(image => ImagesRender(image)).join('');
+      onImagesRender(imagesCart);
+      onImagesRenderLarge();
     })
     .catch(error =>
       iziToast.error({

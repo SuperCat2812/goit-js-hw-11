@@ -1,7 +1,11 @@
 import SimpleLightbox from 'simplelightbox';
 import { refs } from '../main';
 
-export function onImagesRender({
+const large = new SimpleLightbox('.gallery-item a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+export function ImagesRender({
   webformatURL,
   largeImageURL,
   tags,
@@ -33,11 +37,10 @@ export function onImagesRender({
         </div>
       </li>`;
 }
+export function onImagesRender(i) {
+  return (refs.gallery.innerHTML = i);
+}
 export function onImagesRenderLarge() {
-  const large = new SimpleLightbox('.gallery-item a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-  });
   large.refresh();
 }
 
