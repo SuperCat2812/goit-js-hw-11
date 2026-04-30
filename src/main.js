@@ -26,7 +26,7 @@ function onSearchFormImages(e) {
   }
   onLouder();
   onImagesRenderClear();
-  const image = getImage(name)
+  getImage(name)
     .then(imageData => {
       if (imageData.total === 0) {
         iziToast.error({
@@ -36,7 +36,6 @@ function onSearchFormImages(e) {
 
         return;
       }
-      console.log(imageData.hits);
 
       const imagesCart = imageData.hits.map(image => ImagesRender(image)).join('');
       onImagesRender(imagesCart);
