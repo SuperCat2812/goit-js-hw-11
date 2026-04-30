@@ -5,40 +5,34 @@ const large = new SimpleLightbox('.gallery-item a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
-export function ImagesRender({
-  webformatURL,
-  largeImageURL,
-  tags,
-  likes,
-  views,
-  comments,
-  downloads,
-}) {
-  return `  <li class="gallery-item">
-  <a href="${largeImageURL}">
-        <img src="${webformatURL}"alt="${tags}"></a>
+export function ImagesRender(images) {
+  let i = images
+    .map(
+      image => `  <li class="gallery-item">
+  <a href="${image.largeImageURL}">
+        <img src="${image.webformatURL}"alt="${image.tags}"></a>
         <div class="info">
           <div class=content>
             <p class="name">Likes</p>
-            <p>${likes}</p>
+            <p>${image.likes}</p>
           </div class=content>
           <div class=content>
             <p class="name">Views</p>
-            <p>${views}</p>
+            <p>${image.views}</p>
           </div>
           <div class=content>
             <p class="name">Comments</p>
-            <p>${comments}</p>
+            <p>${image.comments}</p>
           </div>
           <div class=content>
             <p class="name">Downloads</p>
-            <p>${downloads}</p>
+            <p>${image.downloads}</p>
           </div>
         </div>
-      </li>`;
-}
-export function onImagesRender(i) {
-  return (refs.gallery.innerHTML = i);
+      </li>`
+    )
+    .join('');
+  refs.gallery.insertAdjacentHTML('beforeend', i);
 }
 export function onImagesRenderLarge() {
   large.refresh();

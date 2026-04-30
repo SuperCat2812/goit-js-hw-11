@@ -3,7 +3,6 @@ import { getImage } from './js/pixabay-api';
 import {
   ImagesRender,
   offLouder,
-  onImagesRender,
   onImagesRenderClear,
   onImagesRenderLarge,
   onLouder,
@@ -37,16 +36,16 @@ function onSearchFormImages(e) {
         return;
       }
 
-      const imagesCart = imageData.hits.map(image => ImagesRender(image)).join('');
-      let imagesCarts = imagesCart;
-      onImagesRender(imagesCarts);
+      const imagesCart = imageData.hits;
+
+      ImagesRender(imagesCart);
       onImagesRenderLarge();
     })
-    .catch(error =>
-      iziToast.error({
-        message: 'Error loud render',
-        position: 'topRight',
-      })
-    )
+    // .catch(error =>
+    //   iziToast.error({
+    //     message: 'Error loud render',
+    //     position: 'topRight',
+    //   })
+    // )
     .finally(() => offLouder());
 }
