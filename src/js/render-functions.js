@@ -1,3 +1,6 @@
+import SimpleLightbox from 'simplelightbox';
+import { refs } from '../main';
+
 export function onImagesRender({
   webformatURL,
   largeImageURL,
@@ -29,4 +32,23 @@ export function onImagesRender({
           </div>
         </div>
       </li>`;
+}
+export function onImagesRenderLarge() {
+  const large = new SimpleLightbox('.gallery-item a', {
+    captionsData: 'alt',
+    captionDelay: 250,
+  });
+  large.refresh();
+}
+
+export function onLouder() {
+  return refs.loader.classList.add('is-active');
+}
+
+export function offLouder() {
+  return refs.loader.classList.remove('is-active');
+}
+
+export function onImagesRenderClear() {
+  return (refs.gallery.innerHTML = '');
 }
