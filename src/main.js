@@ -38,7 +38,8 @@ function onSearchFormImages(e) {
       }
 
       const imagesCart = imageData.hits.map(image => ImagesRender(image)).join('');
-      onImagesRender(imagesCart);
+      let imagesCarts = imagesCart;
+      onImagesRender(imagesCarts);
       onImagesRenderLarge();
     })
     .catch(error =>
